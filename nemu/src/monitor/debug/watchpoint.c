@@ -83,10 +83,8 @@ int check_wp()
 	uint32_t current_value;
 	bool success, flag = true;
 	WP *p = head;
-	printf("OK\n");
 	if (p == NULL)
 	{
-			printf("OK\n");
 		return 0;
 	}
 	else

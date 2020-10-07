@@ -23,13 +23,13 @@ WP *new_wp()
 {
 	WP *p, *q;
 	p = free_;
-	while (p->next != NULL)
+	if (p == NULL)
+		assert(0);
+	while (p->next->next != NULL)
 	{
 		p = p->next;
 	}
 	q = p->next;
-	if (q == NULL)
-		assert(0);
 	p->next = NULL;
 	WP *f = head;
 	if (f == NULL)

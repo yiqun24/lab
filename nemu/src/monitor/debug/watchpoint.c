@@ -75,7 +75,7 @@ void free_wp(WP *wp) //?
 		q->next = wp;
 	}
 	wp->next = NULL;
-	wp->exp = NULL;
+	wp->exp[0] = '\0';
 	wp->value = 0;
 }
 int check_wp()

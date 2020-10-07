@@ -109,10 +109,13 @@ static int cmd_w(char *args)
 {
    WP *p = new_wp();
    bool success;
-   p->exp = args;
+   //char* !!!
    p->value = expr(args,&success);
    if(!success)
    assert(0);
+   strcpy(p->exp,args);
+   printf("watchpoint %d: %s\n",p->NO,p->exp);
+   printf("the first value : %d\n",p->value);   
    return 0;
 }
 static int cmd_help(char *args);

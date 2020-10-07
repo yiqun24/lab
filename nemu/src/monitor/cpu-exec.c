@@ -74,11 +74,10 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 		/* TODO: check watchpoints here. */
-                if(check_wp()!=0)
-              {
+            if(check_wp()!=0)
                 nemu_state = STOP;
-                printf("You have touched off the watchpoint!!!\n");
-              }
+            if(nemu_state != RUNNING) { return; }
+              
 
 
 #ifdef HAS_DEVICE

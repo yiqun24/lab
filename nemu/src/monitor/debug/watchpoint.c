@@ -88,6 +88,7 @@ int check_wp()
 		return 0;
 	else
 	{
+			printf("OK\n");
 		while (p->next != NULL)
 		{
 			current_value = expr(p->exp, &success);

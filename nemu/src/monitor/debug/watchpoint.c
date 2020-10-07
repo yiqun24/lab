@@ -85,7 +85,7 @@ int check_wp()
 	}
 	else
 	{
-		while (p->next != NULL)
+		while (p != NULL)
 		{
 			current_value = expr(p->exp, &success);
 			if (!success)
@@ -93,7 +93,7 @@ int check_wp()
 			if (current_value != p->value)
 			{
 				p->value = current_value;
-				printf("value has changed:     %s         :     %d\n", p->exp, p->value);
+				printf("value has changed:     %s  :  %x    %d\n", p->exp, p->value, p->value);
 				flag = false;
 			}
 			p = p->next;

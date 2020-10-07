@@ -86,10 +86,10 @@ bool check_wp()
 			assert(0);
 		if (current_value != p->value)
 		{
-			printf("value of watchpoint %d has changed", p->NO);
+			printf("value of watchpoint %d has changed\n", p->NO);
 			printf("old value:  %x   %d  \n", p->value, p->value);
 			p->value = current_value;
-			printf("old value:  %x   %d \n", p->value, p->value);
+			printf("new value:  %x   %d \n", p->value, p->value);
 			flag = false;
 		}
 		p = p->next;

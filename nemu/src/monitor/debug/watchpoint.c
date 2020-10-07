@@ -85,10 +85,12 @@ int check_wp()
 	WP *p = head;
 	printf("OK\n");
 	if (p == NULL)
-		return 0;
-	else
 	{
 			printf("OK\n");
+		return 0;
+	}
+	else
+	{
 		while (p->next != NULL)
 		{
 			current_value = expr(p->exp, &success);

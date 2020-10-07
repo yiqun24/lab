@@ -66,6 +66,10 @@ static int cmd_info(char *args){
          printf("esi       0x%x         %d\n", cpu.esi,cpu.esi);
          printf("edi       0x%x         %d\n", cpu.edi,cpu.edi);
         }
+         else if(strcmp(arg,"w") == 0)
+        {
+          info_wp();
+        }
          return 0;
 }
 
@@ -118,6 +122,13 @@ static int cmd_w(char *args)
    printf("the first value : %d\n",p->value);   
    return 0;
 }
+static int cmd_d(char *args)
+{
+   int index;
+   sscanf(args,"%d",&index);
+   delete_wp(index);
+   return 0;
+}
 static int cmd_help(char *args);
 
 static struct {
@@ -132,7 +143,8 @@ static struct {
         { "info", "Output the value of all registers", cmd_info},
         { "x", "Output the data of [N] consecutive bytes in memory from the address you input", cmd_x},
         { "p", "Evaluate the expression", cmd_p},
-        { "w", "Set watchpoint", cmd_w},
+        { "w", "Set a watchpoint", cmd_w},
+        { "d", "Delete thre watchpoint",cmd_d},
 	/* TODO: Add more commands */
 
 };

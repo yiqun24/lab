@@ -25,25 +25,21 @@ WP *new_wp()
 	p = free_;
 	if (p == NULL)
 		assert(0);
-	while (p->next->next != NULL)
-	{
-		p = p->next;
-	}
-	q = p->next;
+	free_ = free_->next;
 	p->next = NULL;
-	WP *f = head;
-	if (f == NULL)
+	q = head;
+	if (q == NULL)
 	{
-		head = q;
-		f = head;
+		head = p;
+		q = head;
 	}
 	else
 	{
-		while (f->next != NULL)
-			f = f->next;
-		f->next = q;
+		while (q->next != NULL)
+			q = q->next;
+		q->next = p;
 	}
-	return q;
+	return p;
 }
 
 void free_wp(WP *wp) //?

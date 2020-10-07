@@ -96,6 +96,7 @@ int check_wp()
 				printf("value has changed:     %s         :     %d\n", p->exp, p->value);
 				flag = false;
 			}
+			p = p->next;
 		}
 	}
 	if (flag)

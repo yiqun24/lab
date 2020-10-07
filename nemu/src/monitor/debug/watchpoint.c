@@ -74,33 +74,25 @@ void free_wp(WP *wp) //?
 	wp->exp[0] = '\0';
 	wp->value = 0;
 }
-int check_wp()
+bool check_wp()
 {
 	uint32_t current_value;
 	bool success, flag = true;
 	WP *p = head;
-	if (p == NULL)
+	while (p != NULL)
 	{
-		return 0;
-	}
-	else
-	{
-		while (p != NULL)
+		current_value = expr(p->exp, &success);
+		if (!success)
+			assert(0);
+		if (current_value != p->value)
 		{
-			current_value = expr(p->exp, &success);
-			if (!success)
-				assert(0);
-			if (current_value != p->value)
-			{
-				p->value = current_value;
-				printf("value has changed:     %s  :  %x    %d\n", p->exp, p->value, p->value);
-				flag = false;
-			}
-			p = p->next;
+			printf("value of watchpoint %d has changed", p->NO);
+			printf("old value:  %x   %d  \n", p->value, p->value);
+			p->value = current_value;
+			printf("old value:  %x   %d \n", p->value, p->value);
+			flag = false;
 		}
+		p = p->next;
 	}
-	if (flag)
-		return 0;
-	else
-		return -1;
+	return flag;
 }

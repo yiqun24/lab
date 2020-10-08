@@ -71,6 +71,8 @@ static int cmd_info(char *args){
         {
           info_wp();
         }
+         else
+         assert(0);
          return 0;
 }
 

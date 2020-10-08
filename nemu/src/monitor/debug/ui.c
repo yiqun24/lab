@@ -65,7 +65,7 @@ static int cmd_info(char *args){
          printf("ebp\t0x%08x\t%d\n", cpu.ebp,cpu.ebp);
          printf("esi\t0x%08x\t%d\n", cpu.esi,cpu.esi);
          printf("edi\t0x%08x\t%d\n", cpu.edi,cpu.edi);
-         printf("eip\t0x%09x\t%d\n", cpu.eip,cpu.eip);
+         printf("eip\t0x%08x\t%d\n", cpu.eip,cpu.eip);
         }
          else if(strcmp(arg,"w") == 0)
         {

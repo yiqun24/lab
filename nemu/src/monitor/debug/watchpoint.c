@@ -103,6 +103,8 @@ void delete_wp(int n)
 }
 void info_wp()
 {
+        if(head == NULL)
+        printf("There is no watchpoint at the moment\n");
 	WP *p = head;
 	while (p != NULL)
 	{

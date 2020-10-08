@@ -87,9 +87,10 @@ bool check_wp()
 		if (current_value != p->value)
 		{
 			printf("value of watchpoint %d has changed\n", p->NO);
-			printf("old value:  %x   %d  \n", p->value, p->value);
+                        printf("the expression is %s\n",p->exp);
+			printf("old value:  0x%x   %d  \n", p->value, p->value);
 			p->value = current_value;
-			printf("new value:  %x   %d \n", p->value, p->value);
+			printf("new value:  0x%x   %d \n", p->value, p->value);
 			flag = false;
 		}
 		p = p->next;
@@ -104,7 +105,7 @@ void delete_wp(int n)
 void info_wp()
 {
         if(head == NULL)
-        printf("There is no watchpoint at the moment\n");
+        printf("There is no watchpoint at the moment !!!\n");
 	WP *p = head;
 	while (p != NULL)
 	{

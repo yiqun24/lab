@@ -57,14 +57,15 @@ static int cmd_info(char *args){
          
          if(strcmp(arg,"r") == 0)
         {
-         printf("eax       0x%x         %d\n", cpu.eax,cpu.eax);
-         printf("ecx       0x%x         %d\n", cpu.ecx,cpu.ecx);
-         printf("edx       0x%x         %d\n", cpu.edx,cpu.edx);
-         printf("ebx       0x%x         %d\n", cpu.ebx,cpu.ebx);
-         printf("esp       0x%x         %d\n", cpu.esp,cpu.esp);
-         printf("ebp       0x%x         %d\n", cpu.ebp,cpu.ebp);
-         printf("esi       0x%x         %d\n", cpu.esi,cpu.esi);
-         printf("edi       0x%x         %d\n", cpu.edi,cpu.edi);
+         printf("eax\t0x%08x\t%d\n", cpu.eax,cpu.eax);
+         printf("ecx\t0x%08x\t%d\n", cpu.ecx,cpu.ecx);
+         printf("edx\t0x%08x\t%d\n", cpu.edx,cpu.edx);
+         printf("ebx\t0x%08x\t%d\n", cpu.ebx,cpu.ebx);
+         printf("esp\t0x%08x\t%d\n", cpu.esp,cpu.esp);
+         printf("ebp\t0x%08x\t%d\n", cpu.ebp,cpu.ebp);
+         printf("esi\t0x%08x\t%d\n", cpu.esi,cpu.esi);
+         printf("edi\t0x%08x\t%d\n", cpu.edi,cpu.edi);
+         printf("eip\t0x%09x\t%d\n", cpu.eip,cpu.eip);
         }
          else if(strcmp(arg,"w") == 0)
         {

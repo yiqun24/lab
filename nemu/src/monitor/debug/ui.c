@@ -36,6 +36,102 @@ static int cmd_q(char *args) {
 	return -1;
 }
 
+static int cmd_si(char *args){
+        char* arg = strtok(NULL," ");
+        int step;
+
+        if(arg == NULL)
+         {
+            step = 1;
+         }
+         else
+         {
+           step = atoi(arg);
+         }
+
+         cpu_exec(step);
+         return 0;
+}
+static int cmd_info(char *args){
+         char* arg = strtok(NULL," ");
+         
+         if(strcmp(arg,"r") == 0)
+        {
+         printf("eax\t0x%08x\t%d\n", cpu.eax,cpu.eax);
+         printf("ecx\t0x%08x\t%d\n", cpu.ecx,cpu.ecx);
+         printf("edx\t0x%08x\t%d\n", cpu.edx,cpu.edx);
+         printf("ebx\t0x%08x\t%d\n", cpu.ebx,cpu.ebx);
+         printf("esp\t0x%08x\t%d\n", cpu.esp,cpu.esp);
+         printf("ebp\t0x%08x\t%d\n", cpu.ebp,cpu.ebp);
+         printf("esi\t0x%08x\t%d\n", cpu.esi,cpu.esi);
+         printf("edi\t0x%08x\t%d\n", cpu.edi,cpu.edi);
+         printf("eip\t0x%08x\t%d\n", cpu.eip,cpu.eip);
+        }
+         else if(strcmp(arg,"w") == 0)
+        {
+          info_wp();
+        }
+         else
+         assert(0);
+         return 0;
+}
+
+static int cmd_x(char *args)
+{
+     char* arg1 = strtok(NULL," ");
+     char* arg2 = strtok(NULL," ");
+     int length;
+     swaddr_t address;
+     if(arg2 == NULL)
+     {
+        length = 1;
+        sscanf(arg1, "%x",&address);
+     }
+     else
+     {
+        length = atoi(arg1);
+        sscanf(arg2, "%x",&address);
+     }
+      int i;
+      printf("0x%x:   ",address);
+      for(i = 0;i < length; i++)
+     {
+        printf("%02x " , swaddr_read(address+i,1));
+     }
+     printf("\n");
+     return 0;
+}
+
+static int cmd_p(char *args)
+{   
+    bool success;
+    uint32_t result = expr(args,&success);
+    if(success)
+     printf("0x%x     %d\n",result,result);
+    else
+     printf("Evaluate failure\n");
+    return 0;
+}
+static int cmd_w(char *args)
+{
+   WP *p = new_wp();
+   bool success;
+   //char* !!!
+   p->value = expr(args,&success);
+   if(!success)
+   assert(0);
+   strcpy(p->exp,args);
+   printf("watchpoint %d: %s\n",p->NO,p->exp);
+   printf("the first value : %d\n",p->value);   
+   return 0;
+}
+static int cmd_d(char *args)
+{
+   int index;
+   sscanf(args,"%d",&index);
+   delete_wp(index);
+   return 0;
+}
 static int cmd_help(char *args);
 
 static struct {
@@ -46,7 +142,12 @@ static struct {
 	{ "help", "Display informations about all supported commands", cmd_help },
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
-
+        { "si", "Make the program executs [N] steps.It will output 20 steps at most at one time", cmd_si},
+        { "info", "Output the value of all registers", cmd_info},
+        { "x", "Output the data of [N] consecutive bytes in memory from the address you input", cmd_x},
+        { "p", "Evaluate the expression", cmd_p},
+        { "w", "Set a watchpoint", cmd_w},
+        { "d", "Delete thre watchpoint",cmd_d},
 	/* TODO: Add more commands */
 
 };
